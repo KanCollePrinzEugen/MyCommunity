@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <span v-html="msg"></span>
+        {{count}}
+        <img v-bind:src="picUrl">
+        <button v-on:click = changePic()>换图</button>
+    </div>
+    <script>
+        const app = {
+            data(){
+                return {
+                    msg: '<font size="30" color="red">SB杨小龙</font>',
+                    count: 0,
+                    picUrl: './images/yxl1.JPG'
+                }
+            },
+            created(){
+
+            },
+            mounted(){
+                this.timer = setInterval(this.add, 1000)
+            },
+            beforeUnmount(){
+                clearInterval(this.timer)
+            },
+            methods:{
+                add(){
+                    this.count = this.count + 1;
+                },
+                changePic(){
+                    this.picUrl = './images/yxl2.jpeg'
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script>
+</body>
+</html>
