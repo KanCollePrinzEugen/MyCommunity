@@ -12,5 +12,21 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-15
  */
 public interface ISysAdminService extends IService<SysAdmin> {
+    /**
+     *
+     * @param loginName
+     * @param loginPwd
+     * @return
+     */
+    SysAdmin validateAdmin(String loginName, String loginPwd);
 
+    /**
+     *
+     * @param loginName
+     * @param loginPwd
+     * @param tel
+     * @param email
+     * @return
+     */
+    int registerAdmin(String loginName, String loginPwd, String tel, String email);
 }

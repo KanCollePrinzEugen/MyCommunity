@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .redColor{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+   <div id="app">
+       <div :class="{'redColor':showFlag}">
+           {{title}}
+       </div>
+       <button v-on:click="changeColor">改颜色</button><p></p>
+<!--       <child></child><p></p>-->
+<!--       <child></child>-->
+       <subComp v-bind:msg="toChild" age="999" v-on:someBodyClickMe="showSomeBodyClick"></subComp>
+   </div>
+    <script>
+        const child ={
+            data(){
+                return {
+                    childTitle:"杨小龙是SB"
+                }
+            },
+            template: '{{childTitle}}---{{msg}}<button v-on:click="clickMe">点我</button>',
+            emits: ['someBodyClickMe'],
+            props: {
+                msg: String,
+                age: Number,
+            },
+            methods: {
+                clickMe(){
+                    const info = {
+                        name: "杨小龙",
+                        age: 24
+                    };
+                    this.$emit('someBodyClickMe', info);
+                }
+            }
+        }
+        const app ={
+            data(){
+                return{
+                    title: "sb杨小龙",
+                    showFlag: true,
+                    toChild: 'hello'
+                }
+            },
+            methods: {
+                changeColor(){
+                    this.showFlag =! this.showFlag;
+                },
+                showSomeBodyClick(info){
+
+                }
+            },
+            components: {
+                subComp: child
+            }
+        }
+
+        const ap = Vue.createApp(app)
+        ap.component("child", child)
+        ap.mount("#app")
+        window.onload = load;
+    </script>
+</body>
+</html>

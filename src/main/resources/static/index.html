@@ -12,6 +12,20 @@
         {{count}}
         <img v-bind:src="picUrl">
         <button v-on:click = changePic()>换图</button>
+        {{isPublish}}
+        <img v-bind:src="captchUrl" v-on:mouseover="refreshCaptch()">
+        <template v-if="flag === 1">
+
+        </template>
+        <template v-if="flag === 2">
+
+        </template>
+        <template v-if="flag === 3">
+
+        </template>
+        <input type="text" v-mode="name">
+        {{name}}
+        <button v-on:click="changeName()"> 改名字</button>
     </div>
     <script>
         const app = {
@@ -19,7 +33,22 @@
                 return {
                     msg: '<font size="30" color="red">SB杨小龙</font>',
                     count: 0,
-                    picUrl: './images/yxl1.JPG'
+                    picUrl: './images/yxl1.JPG',
+                    timer: 0,
+                    age: 0,
+                    captchUrl: './images/yxl2.jpeg',
+                    flag: 1,
+                    name: '杨小龙'
+                }
+            },
+            watch:{
+                age(newVal, oldVal){
+
+                }
+            },
+            computed:{
+                isPublish(){
+                    return true;
                 }
             },
             created(){
@@ -37,6 +66,12 @@
                 },
                 changePic(){
                     this.picUrl = './images/yxl2.jpeg'
+                },
+                refreshCaptch(){
+                    this.captchUrl = './images/yxl1.jpg'
+                },
+                changeName(){
+                    this.name = 'SB'
                 }
             }
         }

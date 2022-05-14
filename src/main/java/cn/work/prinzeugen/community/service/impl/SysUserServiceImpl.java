@@ -5,6 +5,7 @@ import cn.work.prinzeugen.community.mapper.SysUserMapper;
 import cn.work.prinzeugen.community.service.ISysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import sun.security.provider.MD5;
 
 /**
  * <p>
@@ -16,5 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
-
+    @Override
+    public SysUser doLogin(String loginName, String loginPwd) {
+//        loginPwd = MD5.create().digestHex(loginPwd);
+        return null;
+    }
 }

@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-15
  */
 public interface ISysUserService extends IService<SysUser> {
-
+    SysUser doLogin(String loginName, String loginPwd);
 }
