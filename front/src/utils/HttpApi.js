@@ -1,34 +1,43 @@
 import axios from "axios";
 import {ElMessage} from "element-plus";
+// import router from '@/router'
 
 let baseUrl = "http://localhost:80"
 
-axios.interceptors.response.use(success => {
-    if (success.status === 200){
-        let data = success.data;
-        if (data.code == 0){
-            return data.data;
-        } else {
-            ElMessage.error({message: data.msg})
-            return ;
+axios.interceptors.response.use(
+    success => {
+        console.log(success)
+        if (success.status && success.status === 200 && success.data.code !== 0) {
+            ElMessage.error({message: success.data.msg});
+            return;
         }
-    } else {
-        ElMessage.error({message: "访问错误,错误号" + success.status})
-        return ;
+        if (success.data.message) {
+            ElMessage.success({message: success.data.msg})
+        }
+        return success.data;
+    },
+    error =>{
+        if (error.response.status === 504 || error.response.status === 404){
+            ElMessage.error({message : "未找到请求的资源"})
+        } else if (error.response.status === 403){
+            ElMessage.error({message : "无访问权限"})
+        } else if (error.response.status === 401){
+                ElMessage.error({message : "请先登录"})
+            } else {
+            if (error.response.data.msg){
+                ElMessage.error({message : error.response.data.msg + '(' +  error.response.status + ')'})
+            } else {
+                ElMessage.error({message : '未知错误' + '(' +  error.response.status + ')'})
+            }
+        }
     }
-    // eslint-disable-next-line no-unreachable
-    console.log(success);
-    return success;
-});
+);
 
-axios.interceptors.response.use(success => {
-
-})
 
 export const getReq = (url, data) => {
     return axios({
         url: baseUrl + url,
-        method: 'GET',
+        method: 'get',
         params: data
     });
 }

@@ -5,7 +5,7 @@ import cn.work.prinzeugen.community.mapper.SysUserMapper;
 import cn.work.prinzeugen.community.service.ISysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import sun.security.provider.MD5;
+//import sun.security.provider.MD5;
 
 /**
  * <p>

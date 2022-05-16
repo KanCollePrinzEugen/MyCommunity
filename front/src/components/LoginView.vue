@@ -1,5 +1,5 @@
 <template>
-  <h1>欢迎使用系统</h1>
+  <h1>欢迎使用本系统</h1>
   <div class="container">
     <el-form
         v-model="formData"
@@ -25,7 +25,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import {ElMessage} from "element-plus";
 export default {
   name: "LoginView",
   data(){
@@ -39,14 +40,15 @@ export default {
     }
   },
   mounted() {
-    this.$getReq('/captcha', {}).then(resp =>{
-      if (resp.status === 200){
-        let data = resp.data;
-        let json = JSON.parse(data);
-        this.captchaUrl = "data:image/jpeg;base64," + json.data;
+    this.$getReq('/captcha').then(response =>{
+      if (response.code === 0){
+        let data = response.data;
+        this.captchaUrl = "data:image/jpeg;base64," + data;
+      } else {
+        ElMessage.error(response.msg)
       }
     });
-    // axios.get("/captcha").then(response =>{
+    // axios.get("http://localhost:80/captcha").then(response =>{
     //   if (response.status === 200){
     //     this.captchaUrl = "data:image/jpeg;base64," + response.data
     //   } else {
@@ -61,18 +63,20 @@ export default {
         loginPwd: this.formData.loginPwd,
         validCode: this.formData.validCode
       }
-      axios.post("http://localhost:80/doLogin", data).then(response => {
-        if (response.status === 200){
+      // axios.post("/doLogin", data).then(response => {
+      //   if (response.code === 0){
+      //     let data = response.data;
+      //     console.log(data);
+      //   } else {
+      //     ElMessage.error(response.msg)
+      //   }
+      // })
+      this.$postReq('/doLogin', data).then(response =>{
+        if (response.code === 0){
           let data = response.data;
           console.log(data);
-        }
-      })
-      this.$postReq('/doLogin', {}).then(resp =>{
-        if (resp.status === 200){
-          let data = resp.data;
-          console.log(data);
-          // let json = JSON.parse(data);
-          // this.captchaUrl = "data:image/jpeg;base64," + json.data;
+        } else {
+          ElMessage.error(response.msg)
         }
       });
     }
@@ -82,7 +86,7 @@ export default {
 
 <style scoped>
   .container{
-    width: 20%;
+    width: 300px;
     margin: auto;
     background-color: aliceblue;
     border-radius: 5px;
@@ -92,5 +96,8 @@ export default {
   }
   h1{
     text-align: center;
+  }
+  el-form-item{
+    margin: auto;
   }
 </style>

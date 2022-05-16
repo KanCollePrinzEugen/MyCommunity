@@ -11,6 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("cn.work.prinzeugen.community.mapper")
 public class MyCommunityApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MyCommunityApplication.class, args);
+        try{
+            SpringApplication.run(MyCommunityApplication.class, args);
+        } catch (Exception e){
+            System.out.println(e.fillInStackTrace());
+        }
     }
 }
