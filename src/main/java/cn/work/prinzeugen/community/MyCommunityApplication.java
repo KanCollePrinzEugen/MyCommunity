@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author prinzeugen
  */
 @SpringBootApplication
-@MapperScan("cn.work.prinzeugen.community.mapper")
+@MapperScan({"cn.work.prinzeugen.community.mapper"})
 public class MyCommunityApplication {
     public static void main(String[] args) {
         try{

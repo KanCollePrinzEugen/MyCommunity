@@ -7,4 +7,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 1145141919810
-    url: jdbc:mysql://localhost:3306/super_mall?encoding=true&charset=utf8mb4
+    url: jdbc:mysql://localhost:3306/super_mall?encoding=true&charset=utf8mb4_general_ci

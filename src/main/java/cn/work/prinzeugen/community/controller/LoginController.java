@@ -1,10 +1,7 @@
 package cn.work.prinzeugen.community.controller;
 
-import cn.work.prinzeugen.community.entity.SysAdmin;
-import cn.work.prinzeugen.community.entity.SysUser;
-import cn.work.prinzeugen.community.service.ISysAdminService;
-import cn.work.prinzeugen.community.service.ISysUserService;
-import cn.work.prinzeugen.community.service.impl.SysUserServiceImpl;
+import cn.work.prinzeugen.community.entity.sys.SysAdmin;
+import cn.work.prinzeugen.community.service.sys.ISysAdminService;
 import cn.work.prinzeugen.community.utils.R;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
