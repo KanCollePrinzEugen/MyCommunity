@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @author PrinzEugen
  * @since 2022-04-15
  */
-public interface ISysAdminService extends IService<SysAdmin>, UserDetailsService {
+public interface ISysAdminService extends IService<SysAdmin> {
     /**
      *
      * @param loginName

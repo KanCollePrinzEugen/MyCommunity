@@ -54,7 +54,7 @@ public class SysAdmin implements Serializable {
     private String mail;
 
       @ApiModelProperty("状态:-1：删除，0：禁用，1：启用")
-      private Boolean state;
+      private Byte state;
 
     public SysAdmin(String loginName, String loginPwd, String tel, String mail) {
         this.loginName = loginName;
@@ -168,11 +168,11 @@ public class SysAdmin implements Serializable {
           this.mail = mail;
       }
     
-    public Boolean getState() {
+    public Byte getState() {
         return state;
     }
 
-      public void setState(Boolean state) {
+      public void setState(Byte state) {
           this.state = state;
       }
 

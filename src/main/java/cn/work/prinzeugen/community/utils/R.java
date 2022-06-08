@@ -15,4 +15,8 @@ public class R {
     private String msg;
     private Object data;
 
+    public R(int i, String string) {
+        code = i;
+        msg = string;
+    }
 }

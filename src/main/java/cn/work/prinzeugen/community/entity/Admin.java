@@ -1,5 +1,6 @@
 package cn.work.prinzeugen.community.entity;
 
+import cn.work.prinzeugen.community.entity.sys.SysAdmin;
 import cn.work.prinzeugen.community.entity.sys.SysRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +20,7 @@ public class Admin implements UserDetails {
     private Boolean enabled;
     private Boolean locked;
     private List<SysRole> roles;
+    private SysAdmin admin;
 
     public Integer getId() {
         return id;
@@ -66,7 +68,7 @@ public class Admin implements UserDetails {
     }
 
     public String getPassword() {
-        return password;
+        return admin.getPassword();
     }
 
     public void setPassword(String password) {
@@ -89,8 +91,20 @@ public class Admin implements UserDetails {
         this.locked = locked;
     }
 
+    public SysAdmin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(SysAdmin admin) {
+        this.admin = admin;
+    }
+
     public List<SysRole> getRoles() {
         return roles;
+    }
+
+    public Admin(SysAdmin admin) {
+        this.admin = admin;
     }
 
     public void setRoles(List<SysRole> roles) {

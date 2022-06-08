@@ -20,6 +20,11 @@ const constantRouterMap = [
         path: '/sysAdmin',
         name: 'SysAdmin',
         component: () => import('@/components/sys/SysAdminList')
+    },
+    {
+        path: '/home',
+        name: 'Home',
+        component: () => import('@/views/Home')
     }
 ]
 

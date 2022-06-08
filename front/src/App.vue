@@ -1,10 +1,10 @@
 <template>
   <router-view></router-view>
-  <div class="link-box">
-    <router-link to="/Login">登录</router-link>&nbsp;&nbsp;
-    <router-link to="/Register">注册</router-link>&nbsp;&nbsp;
-    <router-link to="/SysAdmin">管理员列表</router-link>
-  </div>
+<!--  <div class="link-box">-->
+<!--    <router-link to="/Login">登录</router-link>&nbsp;&nbsp;-->
+<!--    <router-link to="/Register">注册</router-link>&nbsp;&nbsp;-->
+<!--    <router-link to="/SysAdmin">管理员列表</router-link>-->
+<!--  </div>-->
 </template>
 
 <script>

@@ -19,7 +19,7 @@ public class LoginController {
     private ISysAdminService sysAdminService;
 
     @PostMapping("/doLogin")
-    public R doLogin(@RequestParam JSONObject json, HttpSession session){
+    public R doLogin(@RequestBody JSONObject json, HttpSession session){
         R r = new R();
         String code = json.getString("validCode");
         String name = json.getString("loginName");

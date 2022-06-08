@@ -4,10 +4,7 @@ import cn.work.prinzeugen.community.service.sys.ISysAdminService;
 import cn.work.prinzeugen.community.utils.R;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,8 +18,8 @@ public class RegisterController {
     @Autowired
     private ISysAdminService sysAdminService;
 
-    @PostMapping("/doRegister")
-    public R doRegister(@RequestParam JSONObject json, HttpSession session) {
+    @RequestMapping("/doRegister")
+    public R doRegister(@RequestBody JSONObject json, HttpSession session) {
         R r = new R();
         int result;
         String code = json.getString("validCode");

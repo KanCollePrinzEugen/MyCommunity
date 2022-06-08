@@ -45,6 +45,6 @@ export const postReq = (url, data) => {
     return axios({
         url: baseUrl + url,
         method: 'POST',
-        params: data
+        data: data
     });
 }

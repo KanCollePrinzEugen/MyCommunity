@@ -3,6 +3,7 @@ package cn.work.prinzeugen.community.service.impl.sys;
 import cn.hutool.crypto.digest.MD5;
 import cn.work.prinzeugen.community.entity.Admin;
 import cn.work.prinzeugen.community.entity.sys.SysAdmin;
+import cn.work.prinzeugen.community.entity.sys.SysRole;
 import cn.work.prinzeugen.community.mapper.sys.SysAdminMapper;
 import cn.work.prinzeugen.community.mapper.sys.SysRoleMapper;
 import cn.work.prinzeugen.community.service.sys.ISysAdminService;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -31,7 +34,6 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
     @Override
     public SysAdmin validateAdmin(String loginName, String loginPwd) {
         loginPwd = MD5.create().digestHex16(loginPwd);
-
         QueryWrapper<SysAdmin> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("login_name", loginName);
         queryWrapper.eq("password", loginPwd);
@@ -42,19 +44,5 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
     public int registerAdmin(String loginName, String loginPwd, String tel, String email) {
         SysAdmin sysAdmin = new SysAdmin(loginName, loginPwd, tel, email);
         return sysAdminMapper.insert(sysAdmin);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        QueryWrapper<SysAdmin> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("login_name", username);
-        SysAdmin sysAdmin = sysAdminMapper.selectOne(queryWrapper);
-        if (sysAdmin == null) {
-            throw new UsernameNotFoundException("账号不存在");
-        }
-        Admin admin = new Admin();
-        admin.setUsername(username);
-        admin.setRoles(sysRoleMapper.findUserRole(sysAdmin.getId()));
-        return admin;
     }
 }
